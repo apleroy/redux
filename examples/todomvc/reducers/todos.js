@@ -1,4 +1,8 @@
+//reducers are responsible for taking an actions (which are payloads of information and are created by action creators)
+//and specifying how the application's state (the store) is changed in response.
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes'
+
+//what does our app look like at the beginning
 
 const initialState = [
   {
@@ -8,6 +12,8 @@ const initialState = [
   }
 ]
 
+//a reducer takes the previous state of the application and the action (payload of information) and returns the next state
+
 export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
@@ -16,7 +22,7 @@ export default function todos(state = initialState, action) {
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
           text: action.text
-        }, 
+        },
         ...state
       ]
 
